@@ -73,13 +73,14 @@ $router->get('dashboard', function($req, $res){
 });
 
 $router->get('dashboard_liste_chien', function($req, $res){
-
+    $status = isset($req->query()['status']) ? ( ($req->query()['status'] == 1)? "(1)":"(0)") :"(1,0)";
+  
     require("model/Chiens.php");
     try {
 
         $book = new Chien();
-        $sql = "SELECT * FROM  chien";
-
+        $sql = "SELECT * FROM  chien where  paye in ".$status."";
+        //$sql = "SELECT * FROM  chien where  paye in (1)";
         $chiens = $book->readChien($sql);
         $res->render_dashboard("tous_les_chiens.php",$chiens);
     }

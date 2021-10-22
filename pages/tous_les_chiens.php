@@ -1,4 +1,17 @@
+
+
 <?php ob_start(); ?>
+<div class="input-group mb-3">
+  <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="btn_filtre_status_chien" data-bs-toggle="dropdown" aria-expanded="false">Faites votre filtre</button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="dashboard_liste_chien">Tous les chiens</a></li>
+    <li><a class="dropdown-item" href="dashboard_liste_chien?status=1/chien/vendus">Chien vendus</a></li>
+    <li><a class="dropdown-item" href="dashboard_liste_chien?status=0/chien/libres">Chiens encours</a></li>
+    
+  </ul>
+  <input type="text" class="form-control" aria-label="Text input with dropdown button" name="filtre_status_chien">
+</div>
+
 
 <table class="table table-sm">
 <thead>
@@ -10,6 +23,7 @@
         <th>Race</th>
         <th>Prix</th>
         <th>Genre</th>
+        <th>Libre</th>
         <th>Action</th>
         
     </tr>
@@ -17,14 +31,18 @@
 <?php 
 // href='dashboard_updatechien?id=".$chien['id']."'
     while($chien = $data->fetch()){
+        $libre = $chien['paye'] == 0 ? "...":"vendu";
+        $classVendu = $libre !="vendu"? "":"text-success";
         echo "<tr class='ligne-livre' data-bgmouseover='lightblue' data-bgmouseout='white' data-chien=".$chien['id']." data-selected='0'>
                 <td>".$chien['id']."</td>
-                <td>".$chien['nom']."</td>
+                <td class='text-danger'>".$chien['nom']."</td>
                 <td>".$chien['age']."</td>
                 <td>".$chien['taille']."</td>
                 <td>".$chien['race']."</td>
                 <td>".$chien['prix']."</td>
                 <td>".$chien['genre']."</td>
+                
+                <td class='".$classVendu."'>".$libre."</td>
                 <td>
                     <button class='btn btn-sm btn-outline-secondary btn-sm btn-action-c' data-idanimal='".$chien['id']."' data-action='0' > ... </button>
                     <a class='btn btn-sm btn-outline-secondary btn-sm btn-action-c' href='dashboard_updatechien?id=".$chien['id']."' data-idanimal='".$chien['id']."'  data-action='1'> <img src''> </a>
@@ -49,6 +67,11 @@ window.addEventListener('load', event=>{
     let btn_modifier_oiseau = document.getElementById("btn_modifier_oiseau");
     let btn_supprimer_oiseau = document.getElementById("btn_supprimer_oiseau");
 
+    let btn_filtre_status_chien =document.getElementById("btn_filtre_status_chien");
+
+    btn_filtre_status_chien.addEventListener("click", event=>{
+        //alert("hello")
+    })
     // ajouter chien
     btn_ajouter_chien.addEventListener('click', event=>{
         ajout_chien();
@@ -103,15 +126,16 @@ window.addEventListener('load', event=>{
             }
         })
     }
-          //display all animal in table 
-          //readAnimalData();
+
+    //display all animal in table 
+    //readAnimalData();
           
 
-          // add event  when clicking on animal  btn modification
-          function addClickBtnActionChien(){
+    // add event  when clicking on animal  btn modification
+    function addClickBtnActionChien(){
 
-            let btnaction  = document.querySelectorAll(".btn-action-c");  console.log(btnaction)
-            Array.prototype.map.call(btnaction, btn=>{
+        let btnaction  = document.querySelectorAll(".btn-action-c");  console.log(btnaction)
+        Array.prototype.map.call(btnaction, btn=>{
               btn.addEventListener("click",event=>{
                 let ajaxr ;
               
@@ -204,7 +228,6 @@ window.addEventListener('load', event=>{
 
 })
 ///----end window onload
-
 
 function ajout_chien(){
 
