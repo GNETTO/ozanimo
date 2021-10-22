@@ -1,12 +1,3 @@
-<?php
-if($_SERVER['REQUEST_METHOD'] == "POST" AND isset($_POST['email'])) {
-
-    //echo $_POST['email'] ;
-
-    Header("Location:dashboard");
-    exit;
-}
-?>
 
 
 <!doctype html>

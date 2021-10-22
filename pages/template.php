@@ -78,7 +78,7 @@
           <div class="card-header">Mes Chiens <span class="homebadge"> 50</span> </div>
           <ul class=" list-group list-group-flush">
             <li class="list-group-item"><button class="hbtn w-100" style="text-align:left" data-bs-toggle="modal" data-bs-target="#aminalfiche">Nouveau </button></li>
-            <li class="list-group-item"><a  href="dashboard-liste_chien" class="hbtn w-100" style="text-align:left" >Lire </a></li>
+            <li class="list-group-item"><a  href="dashboard_liste_chien" class="hbtn w-100" style="text-align:left" >Lire </a></li>
           
           </ul>
         </div>
@@ -88,7 +88,7 @@
           <div class="card-header card-bkg">Mes Oiseaux <span class="homebadge"> 20</span> </div>
           <ul class=" list-group list-group-flush">
             <li class="list-group-item"><button class="hbtn w-100" style="text-align:left" data-bs-toggle="modal" data-bs-target="#oiseau-modal">Nouveau </button></li>
-            <li class="list-group-item"><a  href="dashboard-liste_oiseaux" class="hbtn w-100" style="text-align:left" >Lire </a></li>
+            <li class="list-group-item"><a  href="dashboard_liste_oiseaux" class="hbtn w-100" style="text-align:left" >Lire </a></li>
            
           </ul>
         </div>
@@ -134,7 +134,12 @@
   </div>
   </div>
   <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <?=$content ?>
+  </main>
 
+  <script src="assets/cdn/bootstrap.min.js"></script>
+<script src="assets/cdn/popper.min.js"></script>
+<script src="assets/cdn/query-3.2.1.slim.min.js"></script>
     
     
 

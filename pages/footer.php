@@ -23,12 +23,6 @@
   let counter = parseInt(shopping_cart_no.innerHTML) ;
   //cash-card-block"
   let  cash_card_block = document.querySelector("#cash-card-block");
-  /*btn_cash_select.addEventListener("click", event=>{
-
-      once_scenario = new once({deb:0,fn:1});
-      elt.parentElement.parentElement.parentElement.style.backgroundColor = ( once_scenario.onceAction()== )  "rgb(135, 250, 135)";
-
-  })*/
 
   let Mydoc = function(tag, properties, methods, ...childrens){
     properties = properties || {} ;
@@ -51,6 +45,7 @@
     }   
     return doc ;
   }
+
   function cash_b( id, nom, age, prix){
 
     let payment_block = Mydoc("div",{class:"position-relative p-2 mb-2 bg-light" , id:`${id}_${nom}`},{},

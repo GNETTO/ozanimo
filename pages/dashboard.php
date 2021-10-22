@@ -1,6 +1,7 @@
 
 <?php  
-    if($action == "welcome"){
+  ob_start();
+   /* if($action == "welcome"){
       echo "page d' acceuil";
     }
 
@@ -11,7 +12,7 @@
 
     if($action == "tous-oiseau"){
       echo "<div class='table-responsive' id='tab_tousoiseau'></div>";
-    }  
+    }  */
 ?>
 
 <script>
@@ -207,6 +208,7 @@ window.addEventListener('load', event=>{
 
 
 function ajout_chien(){
+
           let nom_chien         = document.getElementById("nom_chien").value;
           let genre_chien       = document.getElementById("genre_chien").value;
           let taille_chien      = document.getElementById("taille_chien").value;
@@ -410,9 +412,7 @@ file.addEventListener("change",e=>{
 
 
 
-<script src="assets/cdn/bootstrap.min.js"></script>
-<script src="assets/cdn/popper.min.js"></script>
-<script src="assets/cdn/query-3.2.1.slim.min.js"></script>
+<?php $content=ob_get_clean(); ?>
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
