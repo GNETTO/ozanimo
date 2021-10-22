@@ -81,12 +81,12 @@ crudMethodOiseau.readFromTab = function(){
     AjaxRequest("GET","asynchRequest/crudOiseau.php",query, ajaxr =>{
         if(ajaxr.responseText != -1 ){
             //alert("Enregistrement reussie")
-            let tab_tousoiseau =document.getElementById("tab_tousoiseau");
+            /*let tab_tousoiseau =document.getElementById("tab_tousoiseau");
             tab_tousoiseau.innerHTML="";
-            tab_tousoiseau.innerHTML= ajaxr.responseText ;
+            tab_tousoiseau.innerHTML= ajaxr.responseText ;*/
            // console.log(ajaxr.responseText);
             ///Adding event 
-            addClickBtnActionOiseau();
+            //addClickBtnActionOiseau();
         }else{
                 alert("Echec d enregistrement")
         }

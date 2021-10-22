@@ -13,7 +13,7 @@
           <label for="validationDefault01" class="col-sm-2 col-lg-4">Nom de l' animal </label>
           <div class="col-sm-10 col-lg-7">
             <input type="text" class="form-control" id="nom_chien"  name="nom_chien" placeholder="Le nom de l' animal"  required>
-            <input type="text" class="form-control" id="id_chien"  name="id_chien" placeholder="" value="<?php ?>">
+            <input type="text" class="form-control d-none" id="id_chien"  name="id_chien" placeholder="" value="<?php ?>">
             <div class="invalid-feedback">
                 Le Nom est obligatoire 
             </div>
@@ -121,9 +121,9 @@
         
       <div class="row mb-3" >
         <div class="d-flex justify-content-center col-12">
-          <img class="loadedImage thumbnail" id="img_modification_c" src="http://localhost/IGS/chalengePhpInscription/publics/solid_svg/user-circle.svg" style="width:80px">
+          <img class="loadedImage thumbnail" id="img_modification" src="http://localhost/IGS/chalengePhpInscription/publics/solid_svg/user-circle.svg" style="width:80px">
         </div>
-        <div class="image-info col-12 text-danger" id="image-info_c"></div>
+        <div class="image-info col-12 text-danger" id="image-info"></div>
       </div>
 
       <div class="d-flex justify-content-center">
