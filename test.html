@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <style>
+         #loader {
+             width:0%;
+              background-color:#ffd600;
+              height: 3px; 
+              position: fixed ;
+              top: 0;
+              left: 0;
+              z-index:100
+            }
+      </style>
+   </head>
+   <body>
+      <div id="loader"></div>
+   </body>
+   <script>
+      
+         let loader = document.getElementById("loader");
+         let offSetLeft ; 
+         
+         window.addEventListener("scroll", event=>{
+               offSetLeft = document.body.offsetHeight - document.body.clientHeight;
+               loader.style.width = `${(pageYOffset / offSetLeft) * 100}%`;
+           
+         })
+
+         let url ="assets/css/dashboard.css";
+         let url2 = "assets/modules/once.js/dsd"
+         console.log( url2.replace(/(\w+(\/)?)+(.css|.js)/gi,"$1 $2 $3") );
+   </script>
+</html>

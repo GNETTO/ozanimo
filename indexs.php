@@ -1,0 +1,10 @@
+RewriteRule ^acceuil$  index.php
+RewriteRule ^dashboard$  index.php
+RewriteRule ^dashboard_ajouter_animal$  index.php
+RewriteRule ^login$  index.php
+RewriteRule ^contactez-moi$  index.php
+RewriteRule ^dashboard/ajouter_animal$  index.php
+#RewriteRule ^dashboard/liste/chien$  index.php
+RewriteRule ^dashboard-liste_chien$  index.php
+RewriteRule ^dashboard-liste_oiseaux$  index.php
+RewriteRule ^dashboard-liste_accessoires$  index.php

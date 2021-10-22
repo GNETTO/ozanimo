@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+        RewriteEngine On
+        #RewriteCond %{REQUEST_FILENAME}% !-f
+        #RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+#RewriteRule acceuil  index.php 
+#RewriteRule  controller.php
+
+#RewriteRule ^mesClasse/([0-9]+)/([0-9]+)/([0-9]+)/?$  mesClass.php?hidden_id=$1&hidden_gpe_teacher=$2&laclass=$3
+#RewriteRule ^acceuil$  controller.php?tache=formulaire_de_connexion
+
+RewriteRule ^acceuil$  index.php
+RewriteRule ^dashboard$  index.php
+RewriteRule ^dashboard_ajouter_animal$  index.php
+RewriteRule ^login$  index.php
+RewriteRule ^contactez-moi$  index.php
+RewriteRule ^dashboard/ajouter_animal$  index.php

@@ -1,0 +1,29 @@
+/*
+acceuil
+*/
+
+#cash-slip-block {
+   position: sticky;
+   background-color: rgb(229, 238, 231) !important; 
+   top:0px;
+   z-index: 1000;
+   overflow-y: hidden;
+   height: 55px;
+   width: 100%;
+   overflow-x: hidden;
+}
+
+.cash-card {
+    background-color: rgb(135, 250, 135);
+}
+
+.shopping-cart{
+   width: 35px;
+}
+
+.shopping-cart-no {
+   font-size: 25px;
+}
+.trash-cash {
+   width: 15px;
+}
