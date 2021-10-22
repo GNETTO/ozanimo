@@ -41,28 +41,28 @@
   
 window.addEventListener('load', event=>{
 
-          let btn_ajouter_chien  = document.getElementById("btn_ajouter_chien");
-          let btn_modifier_chien = document.getElementById("btn_modifier_chien");
-          let btn_supprimer_chien = document.getElementById("btn_supprimer_chien");
+    let btn_ajouter_chien  = document.getElementById("btn_ajouter_chien");
+    let btn_modifier_chien = document.getElementById("btn_modifier_chien");
+    let btn_supprimer_chien = document.getElementById("btn_supprimer_chien");
 
-          let btn_ajouter_oiseau  = document.getElementById("btn_ajouter_oiseau");
-          let btn_modifier_oiseau = document.getElementById("btn_modifier_oiseau");
-          let btn_supprimer_oiseau = document.getElementById("btn_supprimer_oiseau");
+    let btn_ajouter_oiseau  = document.getElementById("btn_ajouter_oiseau");
+    let btn_modifier_oiseau = document.getElementById("btn_modifier_oiseau");
+    let btn_supprimer_oiseau = document.getElementById("btn_supprimer_oiseau");
 
-          // ajouter chien
-          btn_ajouter_chien.addEventListener('click', event=>{
-            ajout_chien();
-          })
+    // ajouter chien
+    btn_ajouter_chien.addEventListener('click', event=>{
+        ajout_chien();
+    })
 
-          //modifier chien
-          btn_modifier_chien.addEventListener('click', event=>{
-            modifier_chien();
-          });
+    //modifier chien
+    btn_modifier_chien.addEventListener('click', event=>{
+        modifier_chien();
+    });
 
-          // btn supprimer oiseau : from 
-          btn_supprimer_chien.addEventListener('click', event=>{
-            supprimer_chien();
-          });
+    // btn supprimer oiseau : from 
+     btn_supprimer_chien.addEventListener('click', event=>{
+        supprimer_chien();
+    });
 
         /**
         CRUD OISEAU
@@ -70,29 +70,25 @@ window.addEventListener('load', event=>{
 
 
         // ajouter oiseau
-        btn_ajouter_oiseau.addEventListener('click', event=>{
+    btn_ajouter_oiseau.addEventListener('click', event=>{
             //ajout_oiseau();
-            
-            crudMethodOiseau.create();
-          })
+        crudMethodOiseau.create();
+    })
 
-          //modifier oiseau
-          btn_modifier_oiseau.addEventListener('click', event=>{
+     //modifier oiseau
+    btn_modifier_oiseau.addEventListener('click', event=>{
             crudMethodOiseau.update();
-          });
+     });
 
-          // btn supprimer oiseau : from 
-          btn_supprimer_oiseau.addEventListener('click', event=>{
-            crudMethodOiseau.delete();
-          });
+    // btn supprimer oiseau : from 
+    btn_supprimer_oiseau.addEventListener('click', event=>{
+        crudMethodOiseau.delete();
+    });
 
-          //reads data of all animals
-          //AjaxRequest("GET", "", query, callback)
-
-          function readAnimalData(){
-            let query ="readAnimal=yes";
-            AjaxRequest("GET","asynchRequest/crudAnimal.php",query, ajaxr =>{
-                if(ajaxr.responseText != -1 ){
+    function readAnimalData(){
+        let query ="readAnimal=yes";
+        AjaxRequest("GET","asynchRequest/crudAnimal.php",query, ajaxr =>{
+            if(ajaxr.responseText != -1 ){
                     //alert("Enregistrement reussie")
                     /*let tab_tousanimaux =document.getElementById("tab_tousanimaux");
                     tab_tousanimaux .innerHTML="";
@@ -100,13 +96,13 @@ window.addEventListener('load', event=>{
                     console.log(ajaxr.responseText);
                     ///Adding event 
                     addClickBtnActionChien();*/
-                }else{
+            }else{
 
-                        alert("Echec d enregistrement");
-                        console.log(ajaxr.responseText)
-                }
-            })
-          }
+                alert("Echec d enregistrement");
+                console.log(ajaxr.responseText)
+            }
+        })
+    }
           //display all animal in table 
           //readAnimalData();
           
