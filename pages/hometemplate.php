@@ -77,6 +77,15 @@
           </div>
         </div>
     </section>
+
+    <main>
+    <?=$content ?>
+    </main>
     
+<script src="assets/cdn/bootstrap.min.js"></script>
+<script src="assets/cdn/popper.min.js"></script>
+<script src="assets/cdn/query-3.2.1.slim.min.js"></script>
+</body>
+</html>
 
 

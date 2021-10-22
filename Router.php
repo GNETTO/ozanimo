@@ -11,12 +11,14 @@ class Router {
     var $request ;
     var $response ;
     var $nopath = true ;
+    var $parsedQuery = array();
+    var $params = array();
 
     function __construct(){
         $this->request = new Request($this);
         $this->response = new Response($this);
         $this->init();
-        //echo "query =".$this->query ."<br> uri =>".$this->uri . "<br> current_dir =>".$this->current_dir . " <br> root=>".$this->root. "<br>";
+        //echo "<div class='text-end p-2'> query =".$this->query ."<br> uri =>".$this->uri . "<br> current_dir =>".$this->current_dir . " <br> root=>".$this->root. "<br> </div>";
     }
 
     function init(){
@@ -26,15 +28,26 @@ class Router {
         $this->current_dir = __DIR__ ;
         $this->uri=    strtolower($_SERVER['REQUEST_URI']);
         $this->query = strtolower($_SERVER['QUERY_STRING']);
-        $this->manageBody();
-
+        $this->parseBody();
+        $this->parseQuery();
+        $this->pareseParams();
     }
 
-    function manageBody(){
+    function parseBody(){
         if($_SERVER['REQUEST_METHOD'] == "POST"){
            
             foreach($_POST as $key=>$val ){
                 $this->body[$key]= $val;
+            }
+        }
+    }
+
+    
+    function parseQuery(){
+        if($_SERVER['REQUEST_METHOD'] == "GET"){
+           
+            foreach($_GET as $key=>$val ){
+                $this->parsedQuery[$key]= $val;
             }
         }
     }
@@ -44,7 +57,7 @@ class Router {
         if($reqString == null) return ; // prevent empty needle error
         if($this->method == "GET") {
 
-           // echo "GET";
+           // echo var_dump($_GET);
             if( strpos($this->uri, $reqString) && $this->compareDirectory($reqString)){
             
                
@@ -53,11 +66,15 @@ class Router {
              }
         } 
     }
+    function pareseParams(){
 
+    }
     private function compareDirectory($reqString){
         $path = str_replace("\\","/",$this->current_dir.DIRECTORY_SEPARATOR.$reqString) ; //echo $path ."<br>";
-        
+        $this->uri = preg_split( '/\?/',$this->uri)[0];  // remove params like ...?id=10
+        //echo "<div class='text-end p-2'> path ".$path."-  uri ".$this->uri."- Query ".$reqString."</div>";
         if(strpos(strtolower($path), $this->uri) ==true ){
+            //echo "<div class='text-end p-2'> path OK</div>";
             return true ;
         }
         return false;
@@ -74,6 +91,7 @@ class Router {
             }
         }
     }
+   
 
     function nothing($handler){
         if($this->nopath == true){
@@ -94,8 +112,8 @@ class Request {
         return $this->router->body;
     }
 
-    function param(){
-        
+    function query(){
+        return $this->router->parsedQuery;
     }
 
 }
@@ -107,27 +125,26 @@ class Response {
         $this->router = $router;
     }
 
-    function render($page, $data, $dashbordHeader, $action){
-     
-       if($dashbordHeader == "d"){
+    function render_dashboard($page, $data=null){
 
-        require("Pages/dashboardheader.php");
-        require("Pages/".$page);
-        
-       }
-       else if($dashbordHeader == "self_header")
-       {
-        require("Pages/login.php");
-       }
-       else
-       {
-        require("Pages/header.php");
-        require("Pages/".$page);
-        require("Pages/footer.php");
-
-       } 
-
+       require("pages/".$page);
+       require("pages/template.php");
     }
 
+    function render($page, $data=null){
+
+        require("pages/".$page);
+        require("pages/hometemplate.php");
+     }
+
+     function render_self($page, $data=null){
+
+        require("pages/".$page);
+        
+     }
+
+     function render_error($page, $data=null){
+        require("pages/".$page);
+     }
 }
 ?>

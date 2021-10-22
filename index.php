@@ -1,14 +1,9 @@
 <?php
 
-global  $includepage ;
-
 require("Router.php");
-
-//echo $_SERVER['REQUEST_METHOD'];
-
 $router = new Router();
 
-$globaldata ="";
+
 $router->get('acceuil', function($req, $res){
     
    $res->render("acceuil.php",array("email"=>"tierogneto@gmail.com"),"","");
