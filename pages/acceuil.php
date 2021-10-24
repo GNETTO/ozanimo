@@ -104,9 +104,10 @@
   let cash_slip_block =  document.getElementById("cash-slip-block");
   let open_slip_btn =  document.getElementById("open-betslip-btn");
   let default_cash_slip_height = "55px" // cash_slip_block.style.height ;
+  let cash_total = document.getElementById("total-cash") ;
 
   open_slip_btn.addEventListener("click", event=>{
-    cash_slip_block.style.height= (cash_slip_block.style.height =="600px") ? default_cash_slip_height:"600px"
+    cash_slip_block.style.height= (cash_slip_block.style.height =="450px") ? default_cash_slip_height:"450px"
   });
 
   let btn_cash_select = document.querySelector(".btn-cash-select");  //all btn to select a product
@@ -114,6 +115,13 @@
   let counter = parseInt(shopping_cart_no.innerHTML) ;
   //cash-card-block"
   let  cash_card_block = document.querySelector("#cash-card-block");
+   
+  // delete all selection
+  trash_meselection = document.getElementById("trash-meselection");
+  trash_meselection.addEventListener("click", event=>{
+    document.getElementById("cash-card-block").innerHTML="";
+    cash_total.innerHTML = "0 FCFA";
+  })
 
   let Mydoc = function(tag, properties, methods, ...childrens){
     properties = properties || {} ;
@@ -148,11 +156,11 @@
         Mydoc("div",{},{},"1"),
         Mydoc("div",{},{},`${nom} - ${age} ans`)
       ),
-      Mydoc("div",{class:'align-right'},{},`${prix} FCFA`)
+      Mydoc("div",{class:'text-right text-primary '},{},`${prix} FCFA`)
     );
     return payment_block ;
   }
-
+  let total_all_cash = 0 ;
   function lunchCash(elt){
     let isselected = ( elt.getAttribute("data-isselected")  == 0 ? 1:0 ) ;  console.log(isselected)
     //console.log( elt)
@@ -163,6 +171,13 @@
         elt.innerHTML="";
         elt.parentElement.parentElement.parentElement.style.backgroundColor="rgb(135, 250, 135)";
         elt.setAttribute("data-isselected",1);
+       
+      total_all_cash = total_all_cash + parseInt(elt.getAttribute("data-prix"));
+      cash_total.innerHTML = total_all_cash + "FCFA";
+      // add selection here
+      let c = cash_b(elt.getAttribute("data-produitid"),elt.getAttribute("data-produit"),elt.getAttribute("data-age"),elt.getAttribute("data-prix"));
+
+      cash_card_block.appendChild(c);
     }
     else {
         console.log(counter);
@@ -171,27 +186,37 @@
         elt.innerHTML="*";
         elt.parentElement.parentElement.parentElement.style.backgroundColor="white";
         elt.setAttribute("data-isselected",0);
+
+        total_all_cash = total_all_cash - parseInt(elt.getAttribute("data-prix"));
+        cash_total.innerHTML = total_all_cash + "FCFA";
+        // remove selection here
+       document.getElementById(elt.getAttribute("data-produitid")+"_"+elt.getAttribute("data-produit")).remove()  ;
+        
     }
-    let c = cash_b(elt.getAttribute("data-produitid"),elt.getAttribute("data-produit"),elt.getAttribute("data-age"),elt.getAttribute("data-prix"));
-    cash_card_block.appendChild(c);
+   
     
   } 
+
+  function valid_cash(){
+    
+    helper.AjaxRequest("GET","asynchRequest/crudVente.php","", ajaxr =>{
+      //let query= new formData();
+
+              if(ajaxr.responseText != -1 ){
+                  //document.getElementById("vision-livre").innerHTML=ajaxr.responseText;
+                  alert(ajaxr.responseText)
+                  
+                //alert(ajaxr.responseText)
+                console.log(ajaxr.responseText)
+              }else{
+               // document.getElementById("vision-livre").innerHTML="<div class='bg-danger'> Erreur lors du chargement de donnee</div>";
+               console.log("Failure")
+              }
+            })
+  }
     //console.log(elt.parentElement.parentElement.parentElement)
   
   ////let [val1, val2] =o.onceAction()
   //console.log( new once())
 </script>
 <?php $content=ob_get_clean();  ?>
-<!-- 
-
- <svg 
-            class="bd-placeholder-img card-img-top" width="100%" height="225" 
-            xmlns="http://www.w3.org/2000/svg" 
-            role="img" aria-label="Placeholder: Thumbnail" 
-            preserveAspectRatio="xMidYMid slice"
-            focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c"/>
-                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-          </svg>
--->

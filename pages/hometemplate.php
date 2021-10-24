@@ -12,7 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/home.css" rel="stylesheet" >
-    <script src="../Helper/helper.js"></script>
+    <script src="assets/methods/helper.js"></script>
     <script src="modules/utilitiesjs.js"></script>
 </head>
 
@@ -69,10 +69,17 @@
 
         <div class="d-flex mt-2">
           <div class="w-75">1</div>
-          <div class="w-25">
-            <div class="bg-light w-100 p-2 mb-1 d-flex justify-content-between"> <span class="">Mes selection</span> <span> <img src="assets/solid_svg/trash-alt.svg" class="trash-cash"></span></div>
+          <div class="w-25" id="meselection-block">
+            <div class="bg-danger w-100 p-2 mb-1 d-flex justify-content-between"> <span class="">Mes selection</span> <span> <img src="assets/solid_svg/trash-alt.svg" class="trash-cash" id="trash-meselection"></span></div>
             <div class="" id="cash-card-block">
 
+            </div>
+            <div id="cash-total-block"  class="d-flex justify-content-around bg-warning mb-1 p-2">
+              <p>Total: </p>
+              <p id="total-cash" class=""> 0 FCFA</p>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-sm btn-success" id="btn-valid-cash" onclick="valid_cash();"> Validez </div>
             </div>
           </div>
         </div>
