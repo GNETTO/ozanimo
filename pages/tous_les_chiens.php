@@ -231,23 +231,23 @@ window.addEventListener('load', event=>{
 
 function ajout_chien(){
 
-          let nom_chien         = document.getElementById("nom_chien").value;
-          let genre_chien       = document.getElementById("genre_chien").value;
-          let taille_chien      = document.getElementById("taille_chien").value;
-          let age_chien         = document.getElementById("age_chien").value;
-          let poids_chien       = document.getElementById("poids_chien").value;
-          let prix_chien        = document.getElementById("prix_chien").value;
-          let fourure_chien     = document.getElementById("fourure_chien").value;
-          let race_chien        = document.getElementById("race_chien").value;
-          let desc_chien        = document.getElementById("desc_chien").value;
-          let cat_chien         = document.getElementById("cat_chien").value;
-          let file_chien        = document.getElementById("file_chien").files[0];
-          let btn_ajouter_chien = document.getElementById("btn_ajouter_chien").innerHTML;
+  let nom_chien         = document.getElementById("nom_chien").value;
+  let genre_chien       = document.getElementById("genre_chien").value;
+  let taille_chien      = document.getElementById("taille_chien").value;
+  let age_chien         = document.getElementById("age_chien").value;
+  let poids_chien       = document.getElementById("poids_chien").value;
+  let prix_chien        = document.getElementById("prix_chien").value;
+  let fourure_chien     = document.getElementById("fourure_chien").value;
+  let race_chien        = document.getElementById("race_chien").value;
+  let desc_chien        = document.getElementById("desc_chien").value;
+  let cat_chien         = document.getElementById("cat_chien").value;
+  let file_chien        = document.getElementById("file_chien").files[0];
+  let btn_ajouter_chien = document.getElementById("btn_ajouter_chien").innerHTML;
         
-          let formadata = new FormData();
+  let formadata = new FormData();
 
-          formadata.append('nom_chien',nom_chien);
-          formadata.append('genre_chien',genre_chien);
+   formadata.append('nom_chien',nom_chien);
+   formadata.append('genre_chien',genre_chien);
           formadata.append('taille_chien',taille_chien);
           formadata.append('age_chien',age_chien);
           formadata.append('poids_chien',poids_chien);
@@ -261,7 +261,7 @@ function ajout_chien(){
           //let query = `nom_oiseau=${nom_oiseau}&genre_oiseau=${genre_oiseau}&taille_oiseau=${taille_oiseau}&age_oiseau=${age_oiseau}&poids_oiseau=${poids_oiseau}&prix_oiseau=${prix_oiseau}&fourure_oiseau=${fourure_oiseau}&race_oiseau=${race_oiseau}&cat_oiseau=${cat_oiseau}&file_oiseau=${file_oiseau}&btn_ajouter_oiseau=${btn_ajouter_oiseau}`
         
           
-            AjaxRequest("POST","asynchRequest/crudAnimal.php",formadata, ajaxr =>{
+            AjaxRequest("POST","asynchRequest/chien.php",formadata, ajaxr =>{
               if(ajaxr.responseText != -1 ){
                 alert("Enregistrement reussie")
                 console.log(ajaxr.responseText)

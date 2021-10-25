@@ -1,16 +1,5 @@
 <?php
-require("../class/crud.php");
-
-
-$crud = new Crud();
-$pdo ="";
-
-try{
-    $pdo = new PDO("mysql:dbname=animalerie; host=localhost","root","");
-}catch (Exception $e){
-    
-    echo "connexion a la base donnée a echoué";
-}
+require("model/Items.php");
 
 
 // CREATE CHIEN
@@ -31,48 +20,49 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['btn_ajouter_chien'])){
 
     try {
 
+        $item = new Item();
+        $album = new Album();
         $response = "";
 
         if(isset($_FILES['file_chien']['name'])){
 
-                $filename = $_FILES['file_chien']['name'];
+            $filename = $_FILES['file_chien']['name'];
         
-                /* Location */
-                $location = "../upload/".$filename;
-                $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
-                $imageFileType = strtolower($imageFileType);
+            /* Location */
+             $location = "../upload/".$filename;
+            $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
+            $imageFileType = strtolower($imageFileType);
             
-                /* Valid extensions */
-                $valid_extensions = array("jpg","jpeg","png");
+            /* Valid extensions */
+            $valid_extensions = array("jpg","jpeg","png");
             
                 
-                /* Check file extension */
-                if(in_array(strtolower($imageFileType), $valid_extensions)) {
-                    /* Upload file */
-                    if(move_uploaded_file($_FILES['file_chien']['tmp_name'], $location)){
-                        $location = "upload/".$filename;
-                        $response = $location;
-                    }
-                
+            /* Check file extension */
+            if(in_array(strtolower($imageFileType), $valid_extensions)) {
+                /* Upload file */
+                if(move_uploaded_file($_FILES['file_chien']['tmp_name'], $location)){
+                    $location = "upload/".$filename;
+                    $response = $location;
                 }
+                
+            }
         }
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO chien VALUES (null, 
+        /* id , label, ref, item_type, price, item_status, link, des*/
+        //$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "INSERT INTO items VALUES (
+                    null, 
                 '".$nom_chien."', 
-                '".$age_chien."',
-                '".$taille_chien."',
-                '".$poids_chien."',
-                '".$prix_chien."',
-                '".$genre_chien."', 
-                '".$race_chien."',
-                '".$fourure_chien."',
-                '".$desc_chien."',
-                 0
+                'ch001',
+                'dog',
+                'not sold',
+                '', 
+                '".$desc_chien."'
             
         )";  
         
-        
-        $id = $crud->create($sql, $pdo);
+        $id = $crud->addItem($sql, $pdo);
+
+
         if($id !=null  ) {
             $sql = "INSERT INTO album VALUES (
                null,
