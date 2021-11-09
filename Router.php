@@ -99,6 +99,8 @@ class Router {
         }
      }
 
+     
+
 
 }
 
@@ -147,4 +149,3 @@ class Response {
         require("pages/".$page);
      }
 }
-?>

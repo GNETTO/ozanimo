@@ -17,13 +17,11 @@
 <thead>
     <tr>
         <th>id</th>
-        <th>Nom</th>
-        <th>Age</th>
-        <th>Taille</th>
+        <th>Labe</th>
+        <th>Type</th>
+        <th>Ref</th>
         <th>Race</th>
         <th>Prix</th>
-        <th>Genre</th>
-        <th>Libre</th>
         <th>Action</th>
         
     </tr>
@@ -31,16 +29,15 @@
 <?php 
 // href='dashboard_updatechien?id=".$chien['id']."'
     while($chien = $data->fetch()){
-        $libre = $chien['paye'] == 0 ? "...":"vendu";
+        $libre = $chien['item_status'] == "not sold" ? "...":"vendu";
         $classVendu = $libre !="vendu"? "":"text-success";
         echo "<tr class='ligne-livre' data-bgmouseover='lightblue' data-bgmouseout='white' data-chien=".$chien['id']." data-selected='0'>
                 <td>".$chien['id']."</td>
-                <td class='text-danger'>".$chien['nom']."</td>
-                <td>".$chien['age']."</td>
-                <td>".$chien['taille']."</td>
+                <td class='text-danger'>".$chien['label']."</td>
+                <td>".$chien['item_type']."</td>
+                <td>".$chien['ref']."</td>
                 <td>".$chien['race']."</td>
-                <td>".$chien['prix']."</td>
-                <td>".$chien['genre']."</td>
+                <td>".$chien['price']."</td>
                 
                 <td class='".$classVendu."'>".$libre."</td>
                 <td>

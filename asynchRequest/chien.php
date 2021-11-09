@@ -1,5 +1,9 @@
 <?php
 require("model/Items.php");
+require("model/Album.php");
+require("model/Stock.php");
+require("model/Stock_History.php");
+require("model/Item_Info.php");
 
 
 // CREATE CHIEN
@@ -13,15 +17,19 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['btn_ajouter_chien'])){
     $genre_chien    = htmlspecialchars($_POST['genre_chien']);
     $taille_chien   = htmlspecialchars($_POST['taille_chien']);
     $fourure_chien  = htmlspecialchars($_POST['fourure_chien']);
-    $cat_chien      = htmlspecialchars($_POST['cat_chien']);
+    $race_chien      = htmlspecialchars($_POST['cat_chien']);
     $desc_chien      = htmlspecialchars($_POST['desc_chien']);
     //$file_chien     = htmlspecialchars($_POST['file_chien']);
     $ajouter_chien  = htmlspecialchars($_POST['btn_ajouter_chien']);
-
+ 
     try {
 
-        $item = new Item();
-        $album = new Album();
+        $item          = new Item(); 
+        $item_info     = new Item_Info();
+        $album         = new Album();
+        $stock         = new Stock();
+        $stock_history = new Stock_History();
+
         $response = "";
 
         if(isset($_FILES['file_chien']['name'])){
@@ -47,38 +55,18 @@ if( $_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['btn_ajouter_chien'])){
                 
             }
         }
-        /* id , label, ref, item_type, price, item_status, link, des*/
-        //$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO items VALUES (
-                    null, 
-                '".$nom_chien."', 
-                'ch001',
-                'dog',
-                'not sold',
-                '', 
-                '".$desc_chien."'
+    
+        $sql = "INSERT INTO items VALUES ( null, '".$nom_chien."', 'ch001','dog','not sold','', '".$desc_chien."')";  
+        $id_item = $item->addItem($sql);
+         
+        $sql = "INSERT INTO album VALUES (null, '". $id_item."', '".$response."',0)"; 
+        $id_alb = $album->addAlbum($sql);
             
-        )";  
-        
-        $id = $crud->addItem($sql, $pdo);
+        $sql = "INSERT INTO stock VALUES (null, '". $id_item."',0)"; 
+        $id_alb = $album->addStock($sql);
 
-
-        if($id !=null  ) {
-            $sql = "INSERT INTO album VALUES (
-               null,
-              'photo', 
-              '".date("Y-m-d")."',
-              '".$response."',
-                NULL,
-                '".$id."',
-              NULL,
-              1
-            )";   
-            $id = $crud->create($sql, $pdo);
-            
-        }else{
-            echo -1 ;
-        } 
+        $sql = "INSERT INTO items_info ('item','fourure','weight','age','genre', 'race') VALUES (null, '". $id_item."', '".$fourure_chien."','".$poids_chien."','".$age_chien."','".$genre_chien."','".$race_chien."')"; 
+        $id_alb = $album->addAlbum($sql);
 
     }catch(Exception $e){
         echo $e;

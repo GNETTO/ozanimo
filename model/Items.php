@@ -5,9 +5,11 @@ class Item  extends Crud{
     function __construct(){
         //$this->pdo = new PDO("mysql:dbname=ozanimo; host=localhost","root","");
        // $this->crud =  new Crud();
+       parent::__construct();
     }
     
     function addItem($sql){
+        
         return $this->create($sql);
     }
 

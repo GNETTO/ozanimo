@@ -42,7 +42,7 @@ $router->post('login', function($req, $res){
             die("Ce mail exist deja");
           }*/
           
-        try {
+     /*   try {
             $user = new Users();
             $sql = "SELECT * FROM collaborateur where email='".$email."' AND pass ='".$password."'";
     
@@ -64,7 +64,7 @@ $router->post('login', function($req, $res){
         }
         catch(Exception $e){
             header("Location:erreur?name=creation de livre&message=".$e->getMessage());
-        }
+        }*/
 });
 
 $router->get('dashboard', function($req, $res){
@@ -75,14 +75,14 @@ $router->get('dashboard', function($req, $res){
 $router->get('dashboard_liste_chien', function($req, $res){
     $status = isset($req->query()['status']) ? ( ($req->query()['status'] == 1)? "(1)":"(0)") :"(1,0)";
   
-    require("model/Chiens.php");
+    require("model/Items.php");
     try {
 
-        $book = new Chien();
-        $sql = "SELECT * FROM  chien where  paye in ".$status."";
-        //$sql = "SELECT * FROM  chien where  paye in (1)";
-        $chiens = $book->readChien($sql);
-        $res->render_dashboard("tous_les_chiens.php",$chiens);
+        $item = new Item();
+        $sql = "SELECT * FROM  items  where  item_type ='dog' ";// and item_status in ".$status."";
+        
+        $chiens = $item->readItem($sql); echo  $chiens;
+        //$res->render_dashboard("tous_les_chiens.php",$chiens);
     }
     catch(Exception $e){
         header("Location:erreur?name=creation de livre&message=".$e->getMessage());
@@ -92,8 +92,8 @@ $router->get('dashboard_liste_chien', function($req, $res){
 });
 
 $router->get('dashboard_liste_oiseaux', function($req, $res){
-    require("model/Oiseaux.php");
-    try {
+    //require("model/Oiseaux.php");
+  /*  try {
 
         $book = new Oiseau();
         $sql = "SELECT * FROM  oiseau";
@@ -103,7 +103,7 @@ $router->get('dashboard_liste_oiseaux', function($req, $res){
     }
     catch(Exception $e){
         header("Location:erreur?name=creation de livre&message=".$e->getMessage());
-    }
+    }*/
 
 });
 $router->get('dashboard-liste_accessoires', function($req, $res){

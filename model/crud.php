@@ -4,7 +4,7 @@ class Crud {
 
     var $pdo ;
 
-    function __constructor(){
+    public function __construct(){
         $this->pdo = new PDO("mysql:dbname=animalerie; host=localhost","root","");
     }
 
@@ -29,6 +29,8 @@ class Crud {
     function delete($q){
         $this->pdo->exec($q);
     }
+
+    
 }
 
 /*class Crudprepare {
